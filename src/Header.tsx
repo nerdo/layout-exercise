@@ -4,7 +4,7 @@ export const Header = () => {
   return (
   <div className={styles.root}>
     <div className={styles.wrapper}>
-      Image Holder 100%    
+      <img src='https://picsum.photos/2000/600' />
     </div>
   </div>
   )

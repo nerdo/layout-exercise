@@ -1,9 +1,15 @@
 @use 'breakpoints';
 
+$header-height: 300px;
+
 .root {
-    border: 2px solid red;
-    
     .wrapper {
-        border: 2px solid green;
+        height: $header-height;
+        
+        img { 
+            width: 100%;
+            height: $header-height;
+            object-fit: cover;
+        }
     }
 }
