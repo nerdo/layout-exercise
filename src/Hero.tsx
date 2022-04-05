@@ -4,7 +4,7 @@ export const Hero = () => {
   return (
   <div className={styles.root}>
     <div className={styles.wrapper}>
-      Image Holder 80% total width
+      <img src='https://picsum.photos/1024/200' />
     </div>
   </div>
   )

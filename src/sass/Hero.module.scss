@@ -1,9 +1,23 @@
 @use 'breakpoints';
+@use 'variables';
+
+$hero-height: 200px;
 
 .root {
-    border: 2px solid purple;
-    
     .wrapper {
-        border: 2px solid teal;
+        width: 100%;
+        height: $hero-height;
+        margin-left: auto;
+        margin-right: auto;
+        
+        @include breakpoints.sm {
+            width: variables.$main-width;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 }
