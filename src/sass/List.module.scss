@@ -1,0 +1,9 @@
+@use 'breakpoints';
+
+.root {
+    border: 2px solid firebrick;
+    
+    .wrapper {
+        border: 2px solid bisque;
+    }
+}
