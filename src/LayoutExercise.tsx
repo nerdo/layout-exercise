@@ -5,11 +5,13 @@ import List from './List'
 
 export const LayoutExercise = () => {
   return (
-  <div className={styles.root}>
-    <Header />
-    <Hero />
-    <List />
-  </div>
+    <div className={styles.root}>
+      <div className={styles.wrapper}>
+        <Header />
+        <Hero />
+        <List />
+      </div>
+    </div>
   )
 }
 

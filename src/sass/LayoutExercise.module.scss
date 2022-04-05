@@ -3,7 +3,7 @@
 .root {
     border: 2px solid blue;
     
-    .wrapper {
-        border: 2px solid orange;
+    .wrapper > * ~ * {
+        margin-top: 20px;
     }
 }
