@@ -4,7 +4,7 @@ export const Hero = () => {
   return (
   <div className={styles.root}>
     <div className={styles.wrapper}>
-      <img src='https://picsum.photos/1024/200' />
+      <img src='https://picsum.photos/id/42/1024/200' />
     </div>
   </div>
   )
