@@ -1,9 +1,87 @@
 @use 'breakpoints';
+@use 'sass:math';
 
-.root {
-    border: 2px solid gold;
-    
-    .wrapper {
-        border: 2px solid hotpink;
+$image-ratio: math.div(4, 3);
+$bg-gutter: #C2BCBC;
+$bg-image: #cccccc;
+$bg-content: #F6F4DB;
+// $bg-content: transparent;
+
+@mixin layout-flex {
+    .root {
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            
+        }
+        
+        &+ .root {
+            margin-top: 10px;
+        }
+
+        @include breakpoints.md {
+            &+.root {
+                margin-top: 0;
+            }
+            
+            .wrapper {
+                flex-direction: row;
+                
+                // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax
+                .gutter {
+                    flex: 10 0 0;
+                }
+
+                .imageContainer {
+                    flex: 20 0 0;
+                    align-self: flex-start;
+                }
+                
+                .content {
+                    flex: 60 0 0;
+                }
+            }
+
+            &:nth-child(even) .wrapper {
+                flex-direction: row-reverse;
+            }
+        }
     }
 }
+
+@mixin layout-grid {
+}
+
+.root {
+    .wrapper {
+        .gutter {
+            &:first-of-type {
+                background: $bg-gutter;
+            }
+        }
+        
+        .imageContainer {
+            background-color: $bg-image;
+            aspect-ratio: $image-ratio;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .content {
+            background-color: $bg-content;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        p + * {
+            margin-top: 20px;
+        }
+    }
+}
+
+@include layout-flex;
+// @include layout-grid; 
