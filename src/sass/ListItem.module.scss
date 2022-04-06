@@ -9,10 +9,16 @@ $bg-content: #F6F4DB;
 
 @mixin layout-flex {
     .root {
-        .wrapper {
+        > .wrapper {
             display: flex;
             flex-direction: column;
             
+            .content {
+                .wrapper {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+            }
         }
         
         &+ .root {
@@ -24,26 +30,40 @@ $bg-content: #F6F4DB;
                 margin-top: 0;
             }
             
-            .wrapper {
+            > .wrapper {
                 flex-direction: row;
                 
                 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax
-                .gutter {
-                    flex: 10 0 0;
+                > .gutter-and-image {
+                    align-self: flex-start;
+                    flex: 30 0 0;
+                    display: flex;
+                    flex-direction: row;
+                    
+                    .gutter {
+                        flex-grow: 1;
+                    }
+
+                    .image {
+                        flex: 2 0 0;
+                    }
                 }
 
-                .imageContainer {
-                    flex: 20 0 0;
-                    align-self: flex-start;
-                }
-                
                 .content {
                     flex: 60 0 0;
+                }
+                
+                > .gutter {
+                    flex: 10 0 0;
                 }
             }
 
             &:nth-child(even) .wrapper {
                 flex-direction: row-reverse;
+
+                > .gutter-and-image {
+                    flex-direction: row-reverse;
+                }
             }
         }
     }
@@ -53,14 +73,14 @@ $bg-content: #F6F4DB;
 }
 
 .root {
-    .wrapper {
+    > .wrapper {
         .gutter {
             &:first-of-type {
                 background: $bg-gutter;
             }
         }
         
-        .imageContainer {
+        .image {
             background-color: $bg-image;
             aspect-ratio: $image-ratio;
 
@@ -73,8 +93,11 @@ $bg-content: #F6F4DB;
 
         .content {
             background-color: $bg-content;
-            padding-left: 10px;
-            padding-right: 10px;
+
+            // dalbert: you'd think padding was here... but padding throws flexbox off here! 
+            // this must be what Juan was talking about....
+            // padding-left: 10px;
+            // padding-right: 10px;
         }
         
         p + * {

@@ -7,15 +7,17 @@ export interface ListItemProps {
 }
 
 export const ListItem = (props: ListItemProps) => {
-  const { children: content, imagePath} = props
+  const { children: content, imagePath } = props
   return (
     <div className={styles.root}>
       <div className={styles.wrapper}>
-        <div className={styles.gutter}></div>
-        <div className={styles.imageContainer}>
-          {imagePath && <img src={imagePath} />}
+        <div className={styles['gutter-and-image']}>
+          <div className={styles.gutter}></div>
+          <div className={styles.image}>{imagePath && <img src={imagePath} />}</div>
         </div>
-        <div className={styles.content}>{content}</div>
+        <div className={styles.content}>
+          <div className={styles.wrapper}>{content}</div>
+        </div>
         <div className={styles.gutter}></div>
       </div>
     </div>
