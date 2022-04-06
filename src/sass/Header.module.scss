@@ -1,15 +1,23 @@
 @use 'breakpoints';
+@use 'variables';
 
 $header-height: 300px;
 
 .root {
     .wrapper {
         height: $header-height;
-        
-        img { 
-            width: 100%;
-            height: $header-height;
-            object-fit: cover;
+        object-fit: cover;
+        background-position: center center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // dalbert: TODO play with some of these...
+        // https://css-tricks.com/design-considerations-text-images/
+        h1 {
+            font-size: 52px;
+            color: variables.$header-text-color;
+            text-align: center;
         }
     }
 }

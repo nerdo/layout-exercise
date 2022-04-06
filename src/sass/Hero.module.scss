@@ -9,15 +9,22 @@ $hero-height: 200px;
         height: $hero-height;
         margin-left: auto;
         margin-right: auto;
-        
+        object-fit: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         @include breakpoints.sm {
             width: variables.$main-width;
         }
-        
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        // dalbert: TODO play with some of these...
+        // https://css-tricks.com/design-considerations-text-images/
+        h2 {
+            font-size: 45px;
+            color: variables.$header-text-color;
+            text-align: center;
         }
     }
 }
