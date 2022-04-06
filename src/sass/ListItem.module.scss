@@ -1,4 +1,5 @@
 @use 'breakpoints';
+@use 'variables';
 @use 'sass:math';
 
 $image-ratio: math.div(4, 3);
@@ -46,11 +47,13 @@ $bg-content: #F6F4DB;
 
                     .image {
                         flex: 2 0 0;
+                        max-width: variables.$max-main-image-width;
                     }
                 }
 
                 .content {
                     flex: 60 0 0;
+                    max-width: variables.$max-main-content-width;;
                 }
                 
                 > .gutter {

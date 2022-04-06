@@ -17,8 +17,9 @@ $hero-height: 200px;
 
         @include breakpoints.sm {
             width: variables.$main-width;
+            max-width: variables.$max-main-width;
         }
-
+        
         // dalbert: TODO play with some of these...
         // https://css-tricks.com/design-considerations-text-images/
         h2 {
