@@ -10,20 +10,22 @@ $bg-content: #F6F4DB;
 
 @mixin layout-flex {
     .root {
+        padding-bottom: 35px;
+        
         > .wrapper {
             display: flex;
             flex-direction: column;
             
             .content {
                 .wrapper {
-                    padding-left: 10px;
-                    padding-right: 10px;
+                    padding-left: 30px;
+                    padding-right: 30px;
                 }
             }
         }
         
         &+ .root {
-            margin-top: 10px;
+            margin-top: 50px;
         }
 
         @include breakpoints.md {
