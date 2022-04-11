@@ -11,11 +11,11 @@ export const ListItem = (props: ListItemProps) => {
     return (
         <div className={styles.root}>
             <div className={styles.wrapper}>
-                <div className={styles['gutter-and-image']}>
-                    <div className={styles.gutter}></div>
-                    <div className={styles.image}>
-                        {imagePath && <img src={imagePath} />}
-                    </div>
+                <div className={styles.gutter}>
+                    <div className={styles.filled}></div>
+                </div>
+                <div className={styles.image}>
+                    {imagePath && <img src={imagePath} />}
                 </div>
                 <div className={styles.content}>
                     <div className={styles.wrapper}>{content}</div>

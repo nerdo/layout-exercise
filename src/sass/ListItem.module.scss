@@ -7,6 +7,7 @@ $bg-gutter: #C2BCBC;
 $bg-image: #cccccc;
 $bg-content: #F6F4DB;
 // $bg-content: transparent;
+$gap-size: 50px;
 
 @mixin layout-flex {
     .root {
@@ -25,7 +26,7 @@ $bg-content: #F6F4DB;
         }
         
         &+ .root {
-            margin-top: 50px;
+            margin-top: $gap-size;
         }
 
         @include breakpoints.md {
@@ -75,16 +76,67 @@ $bg-content: #F6F4DB;
 }
 
 @mixin layout-grid {
+    .root {
+        &+ .root {
+            margin-top: $gap-size;
+        }
+        
+        @include breakpoints.md {
+            > .wrapper {
+                display: grid;
+                grid-template-columns: repeat(10, 1fr);
+                
+                .gutter .filled {
+                    background: $bg-gutter;
+                    aspect-ratio: math.div($image-ratio, 2);
+                }
+        
+                .image {
+                    grid-column-end: span 2;
+                }
+                
+                .content {
+                    grid-column-end: span 6;
+                }
+
+            }
+            
+            // dalbert: using order to reverse even lines
+            &:nth-child(even) > .wrapper {
+                > .gutter:first-of-type {
+                    order: 10;
+                }
+                > .gutter:last-of-type {
+                    order: -1;
+                }
+                > .image {
+                    order: 9;
+                }
+            }
+        }
+        
+        // dalbert: stop growing at the max-main-width
+        @media only screen and (min-width: math.div(variables.$max-main-width, math.div(variables.$main-width, 100%))) {
+            > .wrapper {
+                // make the columns fixed width at this point, except for the gutters
+                grid-template-columns: 1fr repeat(8, math.div(variables.$max-main-width, 8)) 1fr;
+            }    
+
+            > .wrapper .gutter .filled {
+                // dalbert: maths... height of image will be fixed at this breakpoint - gutter should match
+                // ratio = width / height
+                // 1 / ratio = height / width
+                // height = width / ratio
+                // width = 0.25 * max-main-width
+                height: math.div(0.25 * variables.$max-main-width, $image-ratio);
+                aspect-ratio: unset;
+            }
+        }
+    }
 }
 
 .root {
     > .wrapper {
-        .gutter {
-            &:first-of-type {
-                background: $bg-gutter;
-            }
-        }
-        
         .image {
             background-color: $bg-image;
             aspect-ratio: $image-ratio;
@@ -111,5 +163,5 @@ $bg-content: #F6F4DB;
     }
 }
 
-@include layout-flex;
-// @include layout-grid; 
+// @include layout-flex;
+@include layout-grid; 
