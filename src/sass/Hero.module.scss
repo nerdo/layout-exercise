@@ -16,7 +16,7 @@ $hero-height: 200px;
         justify-content: center;
 
         @include breakpoints.sm {
-            width: variables.$main-width;
+            width: variables.$main-width-percentage;
             max-width: variables.$max-main-width;
         }
         

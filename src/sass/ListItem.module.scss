@@ -2,7 +2,6 @@
 @use 'variables';
 @use 'sass:math';
 
-$image-ratio: math.div(4, 3);
 $bg-gutter: #C2BCBC;
 $bg-image: #cccccc;
 $bg-content: #F6F4DB;
@@ -15,14 +14,7 @@ $gap-size: 50px;
         
         > .wrapper {
             display: flex;
-            flex-direction: column;
-            
-            .content {
-                .wrapper {
-                    padding-left: 30px;
-                    padding-right: 30px;
-                }
-            }
+            flex-direction: column;    
         }
         
         &+ .root {
@@ -38,22 +30,24 @@ $gap-size: 50px;
                 flex-direction: row;
                 
                 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax
-                > .gutter-and-image {
-                    align-self: flex-start;
-                    flex: 30 0 0;
-                    display: flex;
-                    flex-direction: row;
+                // > .gutter-and-image {
+                //     align-self: flex-start;
+                //     flex: 30 0 0;
+                //     display: flex;
+                //     flex-direction: row;
                     
-                    .gutter {
-                        flex-grow: 1;
-                    }
+                //     .gutter {
+                //         flex-grow: 1;
+                //     }
 
-                    .image {
-                        flex: 2 0 0;
-                        max-width: variables.$max-main-image-width;
-                    }
+                // }
+
+                .image {
+                    flex: 20 0 0;
+                    max-width: variables.$max-main-image-width;
+                    width: variables.$item-image-width;
+                    height: 100%;
                 }
-
                 .content {
                     flex: 60 0 0;
                     max-width: variables.$max-main-content-width;;
@@ -88,7 +82,7 @@ $gap-size: 50px;
                 
                 .gutter .filled {
                     background: $bg-gutter;
-                    aspect-ratio: math.div($image-ratio, 2);
+                    aspect-ratio: math.div(variables.$item-image-ratio, 2);
                 }
         
                 .image {
@@ -116,19 +110,14 @@ $gap-size: 50px;
         }
         
         // dalbert: stop growing at the max-main-width
-        @media only screen and (min-width: math.div(variables.$max-main-width, math.div(variables.$main-width, 100%))) {
+        @media only screen and (min-width: math.div(variables.$max-main-width, math.div(variables.$main-width-percentage, 100%))) {
             > .wrapper {
                 // make the columns fixed width at this point, except for the gutters
                 grid-template-columns: 1fr repeat(8, math.div(variables.$max-main-width, 8)) 1fr;
             }    
 
             > .wrapper .gutter .filled {
-                // dalbert: maths... height of image will be fixed at this breakpoint - gutter should match
-                // ratio = width / height
-                // 1 / ratio = height / width
-                // height = width / ratio
-                // width = 0.25 * max-main-width
-                height: math.div(0.25 * variables.$max-main-width, $image-ratio);
+                height: variables.$item-image-height;
                 aspect-ratio: unset;
             }
         }
@@ -139,8 +128,8 @@ $gap-size: 50px;
     > .wrapper {
         .image {
             background-color: $bg-image;
-            aspect-ratio: $image-ratio;
-
+            aspect-ratio: variables.$item-image-ratio;
+            
             img {
                 width: 100%;
                 height: 100%;
@@ -153,8 +142,11 @@ $gap-size: 50px;
 
             // dalbert: you'd think padding was here... but padding throws flexbox off here! 
             // this must be what Juan was talking about....
-            // padding-left: 10px;
-            // padding-right: 10px;
+            // padding: 0 30px;
+            // put it in its own box with padding
+            .wrapper {
+                padding: 0 30px;
+            }
         }
         
         p + * {
@@ -163,5 +155,5 @@ $gap-size: 50px;
     }
 }
 
-// @include layout-flex;
-@include layout-grid; 
+@include layout-flex;
+// @include layout-grid; 

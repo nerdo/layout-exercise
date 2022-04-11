@@ -2,13 +2,26 @@
 
 $header-text-color: #2f2e2d;
 
-// dalbert: TODO base layout on this value
-$main-width: 80%;
-$main-gutter-width: (100% - $main-width) * 0.5;
-$main-immage-width: $main-width * 0.25;
-$main-content-width: $main-width * 0.75;
-
+// dalbert: TODO base layout on these values
+$main-width-percentage: 80%;
+$item-image-ratio: math.div(4, 3);
+$item-image-width-percentage: 25%; // with respect to the main-width-percentage
 // $max-main-width: 100vw;
 $max-main-width: 1200px;
-$max-main-image-width: $max-main-width * 0.25;
-$max-main-content-width: $max-main-width * 0.75;
+
+// calculated
+$item-image-width-decimal: math.div($item-image-width-percentage, 100%);
+$item-image-width: #{$item-image-width-decimal * 100}vw;
+// $main-gutter-width: (100% - $main-width-percentage) * 0.5;
+// $main-immage-width: $main-width-percentage * 0.25;
+// $main-content-width: $main-width-percentage * 0.75;
+$max-main-image-width: $max-main-width * $item-image-width-decimal;
+// $max-main-image-height: $max-main-width * 0.25;
+$max-main-content-width: $max-main-width * (1.0 - $item-image-width-decimal);
+
+// dalbert: maths... height of image will be fixed at this breakpoint - gutter should match
+// ratio = width / height
+// 1 / ratio = height / width
+// height = width / ratio
+// width = item-image-width-decimal * max-main-width
+$item-image-height: math.div($item-image-width-decimal * $max-main-width, $item-image-ratio);
