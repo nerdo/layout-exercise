@@ -8,6 +8,7 @@ $bg-content: #F6F4DB;
 // $bg-content: transparent;
 $gap-size: 50px;
 
+// dalbert: TODO consider container, crate, box as substitute names for root, wrapper
 @mixin layout-flex {
     .root {
         padding-bottom: 35px;
@@ -50,20 +51,30 @@ $gap-size: 50px;
                 }
                 .content {
                     flex: 60 0 0;
-                    max-width: variables.$max-main-content-width;;
+                    max-width: variables.$max-main-content-width;
                 }
                 
                 > .gutter {
                     flex: 10 0 0;
+                    
+                    .filled {
+                        background: $bg-gutter;
+                        aspect-ratio: math.div(variables.$item-image-ratio, 2);
+                        height: variables.$item-image-height;
+                    }
                 }
             }
 
             &:nth-child(even) .wrapper {
                 flex-direction: row-reverse;
+            }
+        }
 
-                > .gutter-and-image {
-                    flex-direction: row-reverse;
-                }
+        // dalbert: stop growing at the max-main-width
+        @media only screen and (min-width: math.div(variables.$max-main-width, math.div(variables.$main-width-percentage, 100%))) {
+            .wrapper .gutter .filled {
+                height: variables.$item-image-max-height;
+                aspect-ratio: unset;
             }
         }
     }
@@ -117,7 +128,7 @@ $gap-size: 50px;
             }    
 
             .wrapper .gutter .filled {
-                height: variables.$item-image-height;
+                height: variables.$item-image-max-height;
                 aspect-ratio: unset;
             }
         }

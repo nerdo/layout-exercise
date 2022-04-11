@@ -24,4 +24,5 @@ $max-main-content-width: $max-main-width * (1.0 - $item-image-width-decimal);
 // 1 / ratio = height / width
 // height = width / ratio
 // width = item-image-width-decimal * max-main-width
-$item-image-height: math.div($item-image-width-decimal * $max-main-width, $item-image-ratio);
+$item-image-max-height: math.div($item-image-width-decimal * $max-main-width, $item-image-ratio);
+$item-image-height: math.div($item-image-width, $item-image-ratio);
