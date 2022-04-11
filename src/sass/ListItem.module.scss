@@ -12,7 +12,7 @@ $gap-size: 50px;
     .root {
         padding-bottom: 35px;
         
-        > .wrapper {
+        .wrapper {
             display: flex;
             flex-direction: column;    
         }
@@ -26,7 +26,7 @@ $gap-size: 50px;
                 margin-top: 0;
             }
             
-            > .wrapper {
+            .wrapper {
                 flex-direction: row;
                 
                 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Controlling_Ratios_of_Flex_Items_Along_the_Main_Ax
@@ -76,7 +76,7 @@ $gap-size: 50px;
         }
         
         @include breakpoints.md {
-            > .wrapper {
+            .wrapper {
                 display: grid;
                 grid-template-columns: repeat(10, 1fr);
                 
@@ -96,7 +96,7 @@ $gap-size: 50px;
             }
             
             // dalbert: using order to reverse even lines
-            &:nth-child(even) > .wrapper {
+            &:nth-child(even) .wrapper {
                 > .gutter:first-of-type {
                     order: 10;
                 }
@@ -111,12 +111,12 @@ $gap-size: 50px;
         
         // dalbert: stop growing at the max-main-width
         @media only screen and (min-width: math.div(variables.$max-main-width, math.div(variables.$main-width-percentage, 100%))) {
-            > .wrapper {
+            .wrapper {
                 // make the columns fixed width at this point, except for the gutters
                 grid-template-columns: 1fr repeat(8, math.div(variables.$max-main-width, 8)) 1fr;
             }    
 
-            > .wrapper .gutter .filled {
+            .wrapper .gutter .filled {
                 height: variables.$item-image-height;
                 aspect-ratio: unset;
             }
@@ -125,7 +125,7 @@ $gap-size: 50px;
 }
 
 .root {
-    > .wrapper {
+    .wrapper {
         .image {
             background-color: $bg-image;
             aspect-ratio: variables.$item-image-ratio;
@@ -144,7 +144,7 @@ $gap-size: 50px;
             // this must be what Juan was talking about....
             // padding: 0 30px;
             // put it in its own box with padding
-            .wrapper {
+            .box {
                 padding: 0 30px;
             }
         }

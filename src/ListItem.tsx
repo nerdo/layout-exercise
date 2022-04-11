@@ -18,7 +18,7 @@ export const ListItem = (props: ListItemProps) => {
                     {imagePath && <img src={imagePath} />}
                 </div>
                 <div className={styles.content}>
-                    <div className={styles.wrapper}>{content}</div>
+                    <div className={styles.box}>{content}</div>
                 </div>
                 <div className={styles.gutter}></div>
             </div>
