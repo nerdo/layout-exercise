@@ -109,13 +109,13 @@ $gap-size: 50px;
             // dalbert: using order to reverse even lines
             &:nth-child(even) .wrapper {
                 > .gutter:first-of-type {
-                    order: 10;
+                    order: 2;
                 }
                 > .gutter:last-of-type {
                     order: -1;
                 }
                 > .image {
-                    order: 9;
+                    order: 1;
                 }
             }
         }
@@ -166,5 +166,5 @@ $gap-size: 50px;
     }
 }
 
-@include layout-flex;
-// @include layout-grid; 
+// @include layout-flex;
+@include layout-grid; 

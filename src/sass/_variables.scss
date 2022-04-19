@@ -25,4 +25,7 @@ $max-main-content-width: $max-main-width * (1.0 - $item-image-width-decimal);
 // height = width / ratio
 // width = item-image-width-decimal * max-main-width
 $item-image-max-height: math.div($item-image-width-decimal * $max-main-width, $item-image-ratio);
-$item-image-height: math.div($item-image-width, $item-image-ratio);
+
+// dalbert: got a warningg about using math.div here - usage of it in sass is a little inconsistent :|
+// $item-image-height: math.div($item-image-width, $item-image-ratio);
+$item-image-height: $item-image-width / $item-image-ratio;
